@@ -1,0 +1,8 @@
+---
+- name: Deploy PHP Application
+  hosts: Production
+  gather_facts: yes 
+  become: yes 
+  tasks:
+    - name: Run script to automate PHP App. 
+      script: scripts/php.sh

@@ -1,0 +1,57 @@
+---
+- name: Loop examples
+  hosts: Development
+  become: yes 
+  gather_facts: yes
+  tasks:
+    - name: Update OS
+      apt:
+        update_cache: yes 
+
+    - name: Print the list of these items 
+      debug:
+        msg: "This fruit is: {{ item }}"
+      loop:
+        - cocoa
+        - mango
+        - cashew
+        - orange
+
+    - name: Add users
+      user:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+      loop:
+        - { name: 'demo', state: 'absent'} 
+        - { name: 'mosesnaija', state: 'present'}
+        - { name: 'learningafrica', state: 'present'}
+        - { name: 'buksville', state: 'present'}
+        - { name: 'tsrlearning', state: 'absent'}  
+
+
+    - name: Conditional loop
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - nginx
+      #when: ansible_facts["os_family"] == "Ubuntu" 
+
+
+    - name: Print custom messages
+      debug:
+        msg: "{{ custom_item }}"
+      loop: 
+        - "Message one"
+        - "Message two"
+      loop_control:
+        loop_var: custom_item  
+
+    - name: Install zip and git
+      debug:
+        msg: "Installing this: {{ custom_item }}"
+      loop: 
+        - nginx
+      loop_control:
+        loop_var: custom_item   
+      
