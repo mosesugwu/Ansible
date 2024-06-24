@@ -11,3 +11,21 @@
       apt:
         name: nginx
         state: present
+      notify: restart nginx
+
+    - name: Create simple HTML
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Welcome to work</title>
+          <head>
+          <body>
+            <h1> Ansible is cool</h1>
+            <h1> This page is managed with Ansible</h1>
+          <body>
+          <html>
+      dest: /var/www/html/site.html
+      mode: "0644"
+

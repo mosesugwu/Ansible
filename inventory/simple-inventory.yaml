@@ -3,16 +3,16 @@ all:
   children:
     web_servers:
       hosts:
-        13.83.88.183:
+        13.88.18.184:
       vars:
         ansible_ssh_private_key_file: /home/mosesugwu/.ssh/moseskey
     php_servers:
       hosts:
-        13.91.217.212:
+        13.64.250.164:
       vars:
         ansible_ssh_private_key_file: /home/mosesugwu/.ssh/moseskey
     database:
       hosts:
-        13.83.94.187:
+        13.93.220.150:
       vars:
         ansible_ssh_private_key_file: /home/mosesugwu/.ssh/moseskey

@@ -1,0 +1,40 @@
+---
+# tasks file for nginx
+- name: Update packages
+  apt:
+    update_cache: yes
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Create simple HTML
+  copy:
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Welcome to work</title>
+      <head>
+      <body>
+        <h1> Ansible is cool</h1>
+        <h1> This page is managed with Ansible</h1>
+      <body>
+      <html>
+    dest: /var/www/html/site.html
+    mode: "0644"
+
+- name: Change file permissions
+  file: 
+    path: /var/www/html/
+    state: directory
+    group: mosesugwu
+    owner: mosesugwu
+    recurse: true
+
+# - name: Copy Configuration file
+#   copy:
+#     src: "{{ source_file }}"
+#     dest: "{{ config_dest }}"
+#   notify: restart nginx
