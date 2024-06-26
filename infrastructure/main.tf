@@ -73,13 +73,13 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-# resource "azurerm_public_ip" "vm_2" {
-#   name                = "vm2PublicIP"
-#   resource_group_name = module.resource_group.rg_name
-#   location            = module.resource_group.rg_location
-#   allocation_method   = "Static"
+resource "azurerm_public_ip" "vm_2" {
+  name                = "vm2PublicIP"
+  resource_group_name = module.resource_group.rg_name
+  location            = module.resource_group.rg_location
+  allocation_method   = "Static"
 
-# }
+}
 
 # resource "azurerm_public_ip" "vm_3" {
 #   name                = "vm3PublicIP"
