@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name {{ inventory_hostname }};
+
+    location / {
+        root /user/share/nginx/html;
+        index site.html index.html index.htm
+    }
+}

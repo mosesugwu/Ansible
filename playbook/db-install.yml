@@ -1,0 +1,27 @@
+---
+- name: Deploy Application Configuration
+  hosts: dbservers
+  become: yes 
+  vars:
+    db_host: "db.example.com"
+    db_port: "5432"
+    db_user: "mosesuser"
+    db_password:  !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          34613734386265623137303764323737323066626637333566366365316238306264653734336638
+          3562376232356233386362353962386562393530333766380a383830346430333663306536366138
+          65373038316263306639363763346133363765376263343465613832616662666238663364656136
+          3234366431663539310a643764336639646532613838636133393831623134666564306131303765
+          6262
+  tasks:
+    - name: Create a directory if it does not exist
+      file:
+        path: /etc/app/
+        state: directory
+        mode: '0755'
+
+    - name: Deploy configuration file
+      template:
+        src: application.conf.j2
+        dest: /etc/app/application.conf
+
